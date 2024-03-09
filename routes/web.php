@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ShopController;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -37,9 +37,11 @@ Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
-Route::resource('shop', ShopController::class)
-    ->only(['index', 'store'])
-    ->middleware(['auth', 'verified']);
+Route::get('/shop', [BookController::class, 'index'])->name('products.index');
+Route::get('/shopping-cart', [BookController::class, 'bookCart'])->name('shopping.cart');
+Route::get('/book/{id}', [BookController::class, 'addBooktoCart'])->name('addbook.to.cart');
+Route::patch('/update-shopping-cart', [BookController::class, 'updateCart'])->name('update.sopping.cart');
+Route::delete('/delete-cart-product', [BookController::class, 'deleteProduct'])->name('delete.cart.product');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

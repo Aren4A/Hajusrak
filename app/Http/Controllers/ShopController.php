@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ShopController extends Controller
 {
@@ -13,8 +14,9 @@ class ShopController extends Controller
      */
     public function index(): Response
     {
-        //
-        return response('Hello, World!');
+        return Inertia::render('Shop/Index', [
+            //
+        ]);
     }
 
     /**
