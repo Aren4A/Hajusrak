@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>IlmateadeQQQQQQQQQQQQQQQQQQQ</title>
+    <title>Ilmateade</title>
 </head>
 <body>
-    <h1>Hetke ilm {{ $weatherData['name'] }}</h1>
+    <h1>Hetke ilmateade{{ $weatherData['name'] }}</h1>
     @if (isset($weatherData['weather'][0]['icon']))
             <img src="http://openweathermap.org/img/wn/{{ $weatherData['weather'][0]['icon'] }}.png" alt="Weather Icon">
         @endif
