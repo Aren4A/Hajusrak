@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ilmateade</title>
+    <title>IlmateadeQQQQQQQQQQQQQQQQQQQ</title>
 </head>
 <body>
     <h1>Hetke ilm {{ $weatherData['name'] }}</h1>
