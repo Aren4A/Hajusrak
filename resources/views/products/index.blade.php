@@ -11,6 +11,7 @@
                     <h4 class="card-title">{{ $book->name }}</h4>
                     <p>{{ $book->author }}</p>
                     <p class="card-text"><strong>Hind: </strong> ${{ $book->price }}</p>
+                    <p class="card-quantity"><strong>Kogus:</strong><input type="number"></input></p>
                     <p class="btn-holder"><a href="{{ route('addbook.to.cart', $book->id) }}" class="btn btn-outline-danger">Lisa ostukorvi</a> </p>
                 </div>
             </div>

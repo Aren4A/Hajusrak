@@ -14,6 +14,11 @@ class BookController extends Controller
         return view('products.index', compact('books'));
     }
 
+    public function paying()
+    {
+        return view('products.pay');
+    }
+
     public function bookCart()
     {
         return view('cart');

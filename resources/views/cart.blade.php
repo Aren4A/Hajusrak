@@ -38,7 +38,7 @@
         <tr>
             <td colspan="5" class="text-right">
                 <a href="{{ url('/shop') }}" class="btn btn-primary"><i class="fa fa-angle-left"></i> Jätka ostlemist</a>
-                <button class="btn btn-danger">Maksa</button>
+                <a href="{{ url('/pay') }}" class="btn btn-danger"> Maksa</a>
             </td>
         </tr>
     </tfoot>
@@ -52,7 +52,7 @@
         e.preventDefault();
         var ele = $(this);
         $.ajax({
-            url: '{{ route('update.sopping.cart') }}',
+            url: '{{ route('update.shopping.cart') }}',
             method: "patch",
             data: {
                 _token: '{{ csrf_token() }}', 
