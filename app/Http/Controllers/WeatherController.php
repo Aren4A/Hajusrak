@@ -10,8 +10,8 @@ class WeatherController extends Controller
     public function getWeather()
     {
         // Replace 'YOUR_API_KEY' with your OpenWeather API key
-        $apiKey = env('OPEN_WEATHER_API_KEY');
 
+        $apiKey = config('services.weather.key');
         // Create a new Guzzle client instance
         $client = new Client();
 

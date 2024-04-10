@@ -125,7 +125,7 @@
     }
 </script>
 <script async defer 
-    src="https://maps.googleapis.com/maps/api/js?key={{ env('KAARTI_API_KEY') }}&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key={{ config('services.map.key') }}&callback=initMap">
 </script>
 
 </body>
