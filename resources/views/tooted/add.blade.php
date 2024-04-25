@@ -10,11 +10,11 @@
                         <input type="text" name="title" required/> 
                         <div>Kirjeldus</div>
                         <input type="text" name="description" required/>
-                        <div>image</div>
+                        <div>Pildi aadress</div>
                         <input type="text" name="image" required/> 
-                        <div>price</div>
+                        <div>Hind</div>
                         <input type="number" name="price" placeholder="1.1" required/> 
-                        <div>size</div>
+                        <div>Suurus</div>
                         <input type="text" name="size" required/>
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
