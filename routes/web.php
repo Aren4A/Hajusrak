@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\DrinksController;
 use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
@@ -43,6 +44,16 @@ Route::get('/shopping-cart', [BookController::class, 'bookCart'])->name('shoppin
 Route::get('/book/{id}', [BookController::class, 'addBooktoCart'])->name('addbook.to.cart');
 Route::patch('/update-shopping-cart', [BookController::class, 'updateCart'])->name('update.shopping.cart');
 Route::delete('/delete-cart-product', [BookController::class, 'deleteProduct'])->name('delete.cart.product');
+
+Route::resource('drinks', DrinksController::class);
+
+
+
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::delete('/detachauthor/{book}', [BookController::class, 'detachAuthor'])->name('book.detach.author');
+Route::post('/attachauthor/{book}', [BookController::class, 'attachAuthor'])->name('book.attach.author');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

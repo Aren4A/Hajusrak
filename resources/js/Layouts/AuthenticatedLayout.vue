@@ -44,6 +44,9 @@ const showingNavigationDropdown = ref(false);
                                 <nav-link href="/shop">
                                     Shop
                                 </nav-link>
+                                <nav-link href="/drinks">
+                                    API
+                                </nav-link>
                             </div>
                         </div>
 
@@ -138,6 +141,9 @@ const showingNavigationDropdown = ref(false);
                         </responsive-nav-link>
                         <responsive-nav-link href="/shop">
                             Shop
+                        </responsive-nav-link>
+                        <responsive-nav-link href="/drinks">
+                            API
                         </responsive-nav-link>
                     </div>
 
