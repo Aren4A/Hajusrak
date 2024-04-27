@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Drink;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\RedirectResponse;
 
 class DrinksController extends Controller
 {
@@ -14,8 +15,11 @@ class DrinksController extends Controller
     public function index()
     {
         $drinks = Drink::all();
-
         return view('tooted.index', compact('drinks'));
+        // Return Json Response
+   /* return response()->json([
+    'posts' => $drinks
+ ],200); */
     }
 
     /**
@@ -29,7 +33,7 @@ class DrinksController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required',
@@ -49,7 +53,6 @@ class DrinksController extends Controller
 
         Drink::create($validated);
 
-        return redirect(route('drinks.index'));
     }
 
     /**

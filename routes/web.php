@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\DrinksController;
+use App\Http\Controllers\GetApiDataController;
 use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
@@ -46,8 +47,7 @@ Route::patch('/update-shopping-cart', [BookController::class, 'updateCart'])->na
 Route::delete('/delete-cart-product', [BookController::class, 'deleteProduct'])->name('delete.cart.product');
 
 Route::resource('drinks', DrinksController::class);
-
-
+Route::get('/makeup', [GetApiDataController::class, 'makeup'])->name('makeup');
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
