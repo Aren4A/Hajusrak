@@ -1,17 +1,19 @@
-<h1>Make Up</h1>
+Beyonce albumid:
+
 <div class="product-container">
-    @foreach ($products as $product)
+    @foreach ($objects['items'] as $object)
         <div class="product-card">
-            <img src="{{ $product['image'] }}" alt="{{ $product['title'] }}" class="product-image" width="400" height="400">
+            <img src="{{ $object['images'][0]['url'] }}" alt="{{ $object['name'] }}" class="product-image" width="400" height="400">
             <div class="product-details">
-                <h2 class="product-name">{{ $product['title'] }}</h2>
-                <p class="product-author">Kirjeldus: {{ $product['description'] }}</p>
+                <h2 class="product-name">{{ $object['artists'][0]['name'] }}</h2>
+                <h2 class="product-name">{{ $object['name'] }}</h2>
+                <p class="product-author">Välja antud: {{ $object['release_date'] }}</p>
             </div>
         </div>
     @endforeach
 </div>
 
- <style>
+<style>
 
     .product-container {
     display: flex;
@@ -46,3 +48,6 @@
 
 
 
+
+    
+    

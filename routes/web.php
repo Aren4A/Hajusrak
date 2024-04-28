@@ -48,6 +48,9 @@ Route::delete('/delete-cart-product', [BookController::class, 'deleteProduct'])-
 
 Route::resource('drinks', DrinksController::class);
 Route::get('/makeup', [GetApiDataController::class, 'makeup'])->name('makeup');
+Route::get('/beyonce', [GetApiDataController::class, 'beyonce'])->name('beyonce');
+Route::get('/taylor', [GetApiDataController::class, 'taylor'])->name('taylor');
+Route::get('/records', [GetApiDataController::class, 'records'])->name('records');
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

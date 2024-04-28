@@ -1,11 +1,12 @@
-<h1>Make Up</h1>
+
+<h1>Records</h1>
 <div class="product-container">
     @foreach ($products as $product)
         <div class="product-card">
-            <img src="{{ $product['image'] }}" alt="{{ $product['title'] }}" class="product-image" width="400" height="400">
+            <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="product-image" width="400" height="400">
             <div class="product-details">
-                <h2 class="product-name">{{ $product['title'] }}</h2>
-                <p class="product-author">Kirjeldus: {{ $product['description'] }}</p>
+                <h2 class="product-name">{{ $product['name'] }}</h2>
+                <p class="product-author">{{ $product['author'] }}</p>
             </div>
         </div>
     @endforeach

@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/makeup', [GetApiDataController::class, 'makeup']);
+Route::get('/beyonce', [GetApiDataController::class, 'beyonce']);
+Route::get('/taylor', [GetApiDataController::class, 'taylor']);
+Route::get('/records', [GetApiDataController::class, 'records']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
