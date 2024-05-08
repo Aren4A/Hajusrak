@@ -24,28 +24,32 @@
         <div id="map" class="flex-1"></div>
     
         <div class="p-4 overflow-auto bg-white md:w-1/3 lg:w-1/4 h-full">
-            <h1 class="text-xl font-bold mb-4">Map Markers</h1>
-            <div class="space-y-2 mb-4">
+            <h1 class="font-serif">Salvestatud Markerid</h1>
+            <div class="space-y-2">
                 @php $limitedMarkers = array_slice($markers->toArray(), -10); @endphp
                 @foreach($limitedMarkers as $marker)
                     <div class="flex items-center justify-between p-2 rounded shadow">
                         <div>
-                            <div class="font-semibold">{{ $marker['name'] }}</div>
-                            <div class="text-sm text-gray-600">{{ $marker['description'] }}</div>
+                            <br>
+                            Nimi:
+                            <div class="font-xl">{{ $marker['name'] }}</div>
+                            Kirjeldus: 
+                            <div class="text-xl font-bold text-gray-600">{{ $marker['description'] }}</div>
                         </div>
                         <div class="flex space-x-1">
-                            <a href="{{ route('markers.edit', $marker['id']) }}" class="text-xs bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">Edit</a>
-                            <form action="{{ route('markers.destroy', $marker['id']) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this marker?');">
+                            <a href="{{ route('markers.edit', $marker['id']) }}" class="text-xs bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">Muuda</a>
+                            <form action="{{ route('markers.destroy', $marker['id']) }}" method="POST" onsubmit="return confirm('Oled sa kindel, et tahad kustutada?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-xs bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded">Delete</button>
+                                <button type="submit" class="text-xs bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded">Kustuta</button>
                             </form>
                         </div>
                     </div>
                 @endforeach
             </div>
+            <br>
             <a href="{{ route('markers.create') }}" class="text-center block bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
-                Add New Marker
+                Lisa uus marker
             </a>
         </div>
     
