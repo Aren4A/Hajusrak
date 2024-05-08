@@ -26,7 +26,7 @@ class GetApiDataController extends Controller
     {
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer '.'BQDq8Lwb3PbVh9IeOFsT0ZX3h0buaRTc3Zcwajnt7WIJXzEj2NFJgHQjpZG_du59OY5QcKXkK3_j9nS_rKXziC4ySlI6HZHldfbkVR4AzhYk0FDqcPo',
+            'Authorization' => 'Bearer '.'BQDKCqbILYQLZeJrDpoyXxLWYy3RA_ie_tFryggojlQhXQbRqOYU16XaP-OncnImCvtbvqDWgKo58mZ0VWxtJ7E47pYcuFf1H8xwtk6ze_bEIgeKBcs',
         ])->get('https://api.spotify.com/v1/artists/6vWDO969PvNqNYHIOW5v0m/albums');
 
         $responseData = $response->json();
@@ -38,7 +38,7 @@ class GetApiDataController extends Controller
     {
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer '.'BQDq8Lwb3PbVh9IeOFsT0ZX3h0buaRTc3Zcwajnt7WIJXzEj2NFJgHQjpZG_du59OY5QcKXkK3_j9nS_rKXziC4ySlI6HZHldfbkVR4AzhYk0FDqcPo',
+            'Authorization' => 'Bearer '.'BQDKCqbILYQLZeJrDpoyXxLWYy3RA_ie_tFryggojlQhXQbRqOYU16XaP-OncnImCvtbvqDWgKo58mZ0VWxtJ7E47pYcuFf1H8xwtk6ze_bEIgeKBcs',
         ])->get('https://api.spotify.com/v1/artists/06HL4z0CvFAxyc27GXpf02/top-tracks');
 
         $responseData = $response->json();
