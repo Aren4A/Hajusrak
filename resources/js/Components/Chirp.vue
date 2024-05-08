@@ -59,5 +59,6 @@ const editing = ref(false);
             </form>
             <p v-else class="mt-4 text-lg text-gray-900">{{ chirp.message }}</p>
         </div>
+        <a :href="route('chirp.comments', { chirp: chirp.id })">Kommentaarid</a>
     </div>
 </template>

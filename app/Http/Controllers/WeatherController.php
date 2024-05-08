@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class WeatherController extends Controller
 {
     public function getWeather()
     {
         // Replace 'YOUR_API_KEY' with your OpenWeather API key
-
+        $cacheKey = 'weather_data';
         $apiKey = config('services.weather.key');
         // Create a new Guzzle client instance
         $client = new Client();
@@ -20,16 +21,22 @@ class WeatherController extends Controller
 
         try {
             // Make a GET request to the OpenWeather API
-            $response = $client->get($apiUrl);
+            if (Cache::has($cacheKey)) {
+                $weatherData = Cache::get($cacheKey);
+            } else {
+                // Make a GET request to the OpenWeather API
+                $response = $client->get($apiUrl);
 
-            // Get the response body as an array
-            $data = json_decode($response->getBody(), true);
+                // Get the response body as an array
+                $data = json_decode($response->getBody(), true);
+                Cache::put($cacheKey, $data, now()->addHour());
+            }
 
             // Handle the retrieved weather data as needed (e.g., pass it to a view)
-            return view('weather/weather', ['weatherData' => $data]);
+            return view('weather/weather', ['weatherData' => $weatherData]);
         } catch (\Exception $e) {
             // Handle any errors that occur during the API request
-            return view('api_error', ['error' => $e->getMessage()]);
+            return view('weather/api_error', ['error' => $e->getMessage()]);
         }
     }
 }

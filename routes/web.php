@@ -1,15 +1,17 @@
 <?php
 
+use Inertia\Inertia;
+use App\Models\Comment;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\DrinksController;
-use App\Http\Controllers\GetApiDataController;
 use App\Http\Controllers\MarkerController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\GetApiDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +40,19 @@ Route::get('/dashboard', function () {
 Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
+
+Route::get('/chirps/{chirp}', function ($chirp) {
+        // Fetch comments associated with the Chirp (adjust this logic as needed)
+        $comments = Comment::where('chirp_id', $chirp)->get();
+    
+        return Inertia::render('ChirpComments', [
+            'chirp' => $chirp,
+            'comments' => $comments,
+        ]);
+    })->name('chirp.comments');
+
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+
 
 Route::get('/shop', [BookController::class, 'index'])->name('products.index');
 Route::get('/pay', [BookController::class, 'paying'])->name('products.index');
