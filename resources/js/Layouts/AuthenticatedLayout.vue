@@ -35,18 +35,18 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('chirps.index')" :active="route().current('chirps.index')">
                                     Comments
                                 </NavLink>
-                                <nav-link href="/weather">
+                                <a class="pt-5" href="/weather">
                                     Weather
-                                </nav-link>
-                                <nav-link href="/markers">
+                                </a>
+                                <a class="pt-5" href="/markers">
                                     Map
-                                </nav-link>
-                                <nav-link href="/shop">
+                                </a>
+                                <a class="pt-5" href="/shop">
                                     Shop
-                                </nav-link>
-                                <nav-link href="/drinks">
+                                </a>
+                                <a class="pt-5" href="/drinks">
                                     API
-                                </nav-link>
+                                </a>
                             </div>
                         </div>
 
