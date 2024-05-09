@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
-use Session;
 
 class CheckoutController extends Controller
 {
@@ -19,7 +18,7 @@ class CheckoutController extends Controller
 
         \Stripe\Stripe::setApiKey(Config::get('services.stripe.secret'));
 
-        $cart = Session::get('cart', []);
+        $cart = session()->get('cart', []);
         $lineItems = [];
 
         foreach ($cart as $cartItems) {
@@ -47,7 +46,7 @@ class CheckoutController extends Controller
 
     public function success(Request $request)
     {
-        Session::forget('cart');
+        session()->forget('cart');
 
         return view('success');
     }
