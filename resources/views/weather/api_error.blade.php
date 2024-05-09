@@ -4,7 +4,7 @@
     <title>API Error</title>
 </head>
 <body>
-    <h1>An error occurred while fetching weather data:</h1>
+    <h1>Oota veits ja refreshi</h1>
     <p>{{ $error }}</p>
 </body>
 </html>

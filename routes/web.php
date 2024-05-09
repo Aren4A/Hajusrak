@@ -11,6 +11,7 @@ use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\GetApiDataController;
 
 /*
@@ -42,17 +43,16 @@ Route::resource('chirps', ChirpController::class)
     ->middleware(['auth', 'verified']);
 
 Route::get('/chirps/{chirp}', function ($chirp) {
-        // Fetch comments associated with the Chirp (adjust this logic as needed)
-        $comments = Comment::where('chirp_id', $chirp)->get();
-    
-        return Inertia::render('ChirpComments', [
-            'chirp' => $chirp,
-            'comments' => $comments,
-        ]);
-    })->name('chirp.comments');
+    // Fetch comments associated with the Chirp (adjust this logic as needed)
+    $comments = Comment::where('chirp_id', $chirp)->get();
+
+    return Inertia::render('ChirpComments', [
+        'chirp' => $chirp,
+        'comments' => $comments,
+    ]);
+})->name('chirp.comments');
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-
 
 Route::get('/shop', [BookController::class, 'index'])->name('products.index');
 Route::get('/pay', [BookController::class, 'paying'])->name('products.index');
@@ -60,6 +60,13 @@ Route::get('/shopping-cart', [BookController::class, 'bookCart'])->name('shoppin
 Route::get('/book/{id}', [BookController::class, 'addBooktoCart'])->name('addbook.to.cart');
 Route::patch('/update-shopping-cart', [BookController::class, 'updateCart'])->name('update.shopping.cart');
 Route::delete('/delete-cart-product', [BookController::class, 'deleteProduct'])->name('delete.cart.product');
+
+Route::middleware(['auth', 'verified'])->prefix('checkout')->name('checkout.')->group(function () {
+    Route::get('/', [CheckoutController::class, 'index'])->name('index');
+    Route::post('/sessions', [CheckoutController::class, 'checkout'])->name('checkout');
+    Route::get('/success', [CheckoutController::class, 'success'])->name('success');
+    Route::get('/cancel', [CheckoutController::class, 'cancel'])->name('cancel');
+});
 
 Route::resource('drinks', DrinksController::class);
 Route::get('/makeup', [GetApiDataController::class, 'makeup'])->name('makeup');

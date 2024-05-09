@@ -32,16 +32,27 @@
                     </td>
                 </tr>
             @endforeach
-        @endif
-    </tbody>
-    <tfoot>
+            
+        
+    
         <tr>
             <td colspan="5" class="text-right">
                 <a href="{{ url('/shop') }}" class="btn btn-primary"><i class="fa fa-angle-left"></i> Jätka ostlemist</a>
-                <a href="{{ url('/pay') }}" class="btn btn-danger"> Maksa</a>
+                    
+                        <div class="pt-2">
+                            <form action="{{ route('checkout.checkout') }}" method="POST">
+                                @csrf
+                                <button class="btn btn-outline-danger" type="submit">
+                                    Maksma
+                                </button>
+                            </form>
+                        </div>
             </td>
         </tr>
-    </tfoot>
+        @else
+                        <p>Ostukorv on tühi!</p>
+        @endif
+</tbody>
 </table>
 @endsection
   
