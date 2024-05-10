@@ -1,18 +1,19 @@
 <?php
 
-use Inertia\Inertia;
-use App\Models\Comment;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\ChirpController;
-use App\Http\Controllers\DrinksController;
-use App\Http\Controllers\MarkerController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DrinksController;
+use App\Http\Controllers\GetApiDataController;
+use App\Http\Controllers\MarkerController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\GetApiDataController;
+use App\Models\Role;
+use App\Models\User;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,21 +39,17 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('chirps', ChirpController::class)
-    ->only(['index', 'store', 'update', 'destroy'])
-    ->middleware(['auth', 'verified']);
+Route::controller(PostController::class)->middleware(['auth', 'verified'])->name('posts.')->group(function () {
+    Route::get('/blog', 'index')->name('index');
+    Route::post('/blog', 'store')->name('store');
+    Route::put('/blog/{post}', 'update')->name('update');
+    Route::delete('/blog/{post}', 'destroy')->name('destroy');
+});
 
-Route::get('/chirps/{chirp}', function ($chirp) {
-    // Fetch comments associated with the Chirp (adjust this logic as needed)
-    $comments = Comment::where('chirp_id', $chirp)->get();
-
-    return Inertia::render('ChirpComments', [
-        'chirp' => $chirp,
-        'comments' => $comments,
-    ]);
-})->name('chirp.comments');
-
-Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::controller(CommentController::class)->middleware(['auth', 'verified'])->name('comments.')->group(function () {
+    Route::post('/comment', 'store')->name('store');
+    Route::delete('/{comment}', 'destroy')->name('destroy');
+});
 
 Route::get('/shop', [BookController::class, 'index'])->name('products.index');
 Route::get('/pay', [BookController::class, 'paying'])->name('products.index');

@@ -32,7 +32,7 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink :href="route('chirps.index')" :active="route().current('chirps.index')">
+                                <NavLink :href="route('posts.index')" :active="route().current('posts.index')">
                                     Comments
                                 </NavLink>
                                 <a class="pt-5" href="/weather">
@@ -130,7 +130,7 @@ const showingNavigationDropdown = ref(false);
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('chirps.index')" :active="route().current('chirps.index')">
+                        <ResponsiveNavLink :href="route('posts.index')" :active="route().current('posts.index')">
                             Comments
                         </ResponsiveNavLink>
                         <responsive-nav-link href="/weather">

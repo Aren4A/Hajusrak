@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chirp;
+use App\Http\Middleware\AdminMiddleware;
+use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class ChirpController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): Response
     {
-        return Inertia::render('Chirps/Index', [
-            'chirps' => Chirp::with('user:id,name')->latest()->get(),
+        return Inertia::render('Blog', [
+            'posts' => Post::with('user:id,name', 'comments.user')->latest()->get(),
         ]);
     }
 
@@ -37,15 +38,15 @@ class ChirpController extends Controller
             'message' => 'required|string|max:255',
         ]);
 
-        $request->user()->chirps()->create($validated);
+        $request->user()->posts()->create($validated);
 
-        return redirect(route('chirps.index'));
+        return redirect()->back()->with('message', 'Post added successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Chirp $chirp)
+    public function show(Post $post)
     {
         //
     }
@@ -53,7 +54,7 @@ class ChirpController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Chirp $chirp)
+    public function edit(Post $post)
     {
         //
     }
@@ -61,29 +62,27 @@ class ChirpController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Chirp $chirp): RedirectResponse
+    public function update(Request $request, Post $post): RedirectResponse
     {
-        $this->authorize('update', $chirp);
 
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
 
-        $chirp->update($validated);
+        $post->update($validated);
 
-        return redirect(route('chirps.index'));
+        return redirect()->back()->with('message', 'Post updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Chirp $chirp): RedirectResponse
+    public function destroy(Post $post): RedirectResponse
     {
-        //
-        $this->authorize('delete', $chirp);
 
-        $chirp->delete();
+        $post->delete();
 
-        return redirect(route('chirps.index'));
+        return redirect()->back()->with('message', 'Post deleted successfully!');
     }
+
 }

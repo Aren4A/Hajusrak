@@ -11,9 +11,19 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    public function chirps(): HasMany
+    public function posts(): HasMany
     {
-        return $this->hasMany(Chirp::class);
+        return $this->hasMany(Post::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->roles->contains('name', 'admin');
     }
 
     use HasApiTokens, HasFactory, Notifiable;
