@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
