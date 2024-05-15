@@ -9,28 +9,11 @@ dayjs.extend(relativeTime);
 
 defineProps(["comments"]);
 
-const viewComments = ref(false);
 </script>
 
 <template>
-  <!-- VIEW ALL COMMENTS -->
-  <div class="flex justify-end divide-y-4">
-    <div class="flex flex-row gap-3">
-      <SecondaryButton
-        class="text-2x text-black/75 font-extrabold hover:text-indigo-500"
-        @click="viewComments = true"
-        >LISATUD KOMMENTAARID</SecondaryButton
-      >
-      <button
-        v-if="viewComments"
-        class="px-2 text-gray-400 hover:text-gray-200"
-        @click="viewComments = false"
-      >
-        TÜHISTA
-      </button>
-    </div>
-  </div>
-  <div v-if="viewComments" class="bg-gray-50">
+
+
     <div class="p-5 h-auto">
       <div class="grid">
         <div
@@ -63,5 +46,5 @@ const viewComments = ref(false);
         </div>
       </div>
     </div>
-  </div>
+
 </template>
