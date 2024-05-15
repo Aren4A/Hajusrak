@@ -51,8 +51,7 @@ const viewComments = ref(false);
           <div class="ml-auto mr-0">
             <Link
               v-if="
-                comment.user_id === $page.props.auth.user.id ||
-                $page.props.auth.isAdmin
+                comment.user_id === $page.props.auth.user.id || $page.props.auth.user.id === 1
               "
               as="button"
               :href="route('comments.destroy', comment.id)"
