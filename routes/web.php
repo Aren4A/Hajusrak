@@ -1,19 +1,20 @@
 <?php
 
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\DrinksController;
-use App\Http\Controllers\GetApiDataController;
-use App\Http\Controllers\MarkerController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WeatherController;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\DrinksController;
+use App\Http\Controllers\MarkerController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WeatherController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\GetApiDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,13 +51,14 @@ Route::controller(CommentController::class)->middleware(['auth', 'verified'])->n
     Route::post('/comment', 'store')->name('store');
     Route::delete('/{comment}', 'destroy')->name('destroy');
 });
+Route::resource('/products', ProductController::class);
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
-Route::get('/shop', [BookController::class, 'index'])->name('products.index');
-Route::get('/pay', [BookController::class, 'paying'])->name('products.index');
-Route::get('/shopping-cart', [BookController::class, 'bookCart'])->name('shopping.cart');
-Route::get('/book/{id}', [BookController::class, 'addBooktoCart'])->name('addbook.to.cart');
-Route::patch('/update-shopping-cart', [BookController::class, 'updateCart'])->name('update.shopping.cart');
-Route::delete('/delete-cart-product', [BookController::class, 'deleteProduct'])->name('delete.cart.product');
+Route::get('/add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
+
+Route::get('/cart', [ProductController::class, 'cart'])->name('cart');
+Route::post('/update-cart/{id}',[ProductController::class, 'updateCart'])->name('update.cart');
+Route::get('/remove-from-cart/{id}', [ProductController::class, 'removeFromCart'])->name('remove.from.cart');
 
 Route::middleware(['auth', 'verified'])->prefix('checkout')->name('checkout.')->group(function () {
     Route::get('/', [CheckoutController::class, 'index'])->name('index');
@@ -74,8 +76,6 @@ Route::get('/records', [GetApiDataController::class, 'records'])->name('records'
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-Route::delete('/detachauthor/{book}', [BookController::class, 'detachAuthor'])->name('book.detach.author');
-Route::post('/attachauthor/{book}', [BookController::class, 'attachAuthor'])->name('book.attach.author');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

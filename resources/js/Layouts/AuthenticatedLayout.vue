@@ -41,7 +41,7 @@ const showingNavigationDropdown = ref(false);
                                 <a class="pt-5" href="/markers">
                                     Map
                                 </a>
-                                <a class="pt-5" href="/shop">
+                                <a class="pt-5" href="/products">
                                     Shop
                                 </a>
                                 <a class="pt-5" href="/drinks">

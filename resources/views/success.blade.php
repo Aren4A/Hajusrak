@@ -5,7 +5,7 @@
                     <div class="p-8">
                         <h1>Täname ostu eest!</h1>
                         <p>
-                            
+                            <a class="btn btn-primary" href="{{ route('products.index') }}">Jätka ostlemist</a>
                         </p>
                     </div>
                 </div>
