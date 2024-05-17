@@ -29,7 +29,7 @@
                                     <button class="btn btn-primary" type="submit">Uuenda ostukorvi</button>
                                 </form>
                                 <div class="py-2">
-                                    <a class="btn btn-outline-danger btn-sm delete-product"><i class="fa fa-trash-o"></i> Kustuta</a>
+                                    <a class="btn btn-outline-danger btn-sm delete-product" href="{{ route('remove.from.cart', $id) }}"><i class="fa fa-trash-o"></i> Kustuta</a>
                                 </div>
                             </div>
                         @endforeach
