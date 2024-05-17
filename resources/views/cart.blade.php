@@ -19,7 +19,7 @@
                         @foreach(session('cart') as $id => $details)
                             <?php $total += $details['price'] * $details['quantity']; ?>
                             <div class="item">
-                                <img src="{{$details['image']}}" alt="{{ $details['name'] }}" class="product-image" width="w-fit" height="h-fit">
+                                <img src="{{$details['image']}}" alt="{{ $details['name'] }}" class="product-image" width="300" height="400">
                                 <h1>{{ $details['name'] }}</h1>
                                 <p>Hind: <strong>{{ number_format($details['price'], 2) }}€</strong></p>
                                 <p>Kogus:<strong> {{ $details['quantity'] }}</strong></p>
